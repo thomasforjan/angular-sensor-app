@@ -1,0 +1,12 @@
+<mat-dialog-content>
+  <p>Möchten Sie den Sensor wirklich löschen?</p>
+  <h1></h1>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="confirmDeleteModal()" color="warn">
+    Löschen
+  </button>
+  <button mat-raised-button mat-dialog-close (click)="cancelDeleteModal()">
+    Abbrechen
+  </button>
+</mat-dialog-actions>
