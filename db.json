@@ -1,27 +1,6 @@
 {
   "sensorsData": [
     {
-      "sensorId": 3,
-      "temperature": 5,
-      "humidity": 47,
-      "date": "2022-03-17",
-      "id": 9
-    },
-    {
-      "sensorId": 2,
-      "temperature": 16,
-      "humidity": 44,
-      "date": "2022-12-15",
-      "id": 10
-    },
-    {
-      "sensorId": 2,
-      "temperature": 22,
-      "humidity": 33,
-      "date": "2022-11-18",
-      "id": 11
-    },
-    {
       "sensorId": 2,
       "temperature": 23,
       "humidity": 32,
@@ -30,17 +9,31 @@
     },
     {
       "sensorId": 1,
-      "temperature": 999,
-      "humidity": 100,
+      "temperature": 10,
+      "humidity": 20,
       "date": "2022-11-11",
       "id": 13
     },
     {
-      "sensorId": 2,
-      "temperature": 100,
-      "humidity": 100,
-      "date": "2022-11-11",
+      "sensorId": 3,
+      "temperature": 30,
+      "humidity": 30,
+      "date": "1111-01-01",
       "id": 14
+    },
+    {
+      "sensorId": 1,
+      "temperature": 100,
+      "humidity": 20,
+      "date": "2022-01-01",
+      "id": 15
+    },
+    {
+      "sensorId": 1,
+      "temperature": -5,
+      "humidity": 100,
+      "date": "2022-01-01",
+      "id": 16
     }
   ],
   "sensors": [
