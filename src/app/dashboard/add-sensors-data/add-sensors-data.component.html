@@ -5,7 +5,7 @@
 >
   ></app-button
 >
-<form
+<!-- <form
   [formGroup]="sensorenDataForm"
   (ngSubmit)="onSubmit()"
   *ngIf="showAddTask"
@@ -32,4 +32,46 @@
   />
   <button mat-raised-button class="btn" type="submit">Erfassen</button>
   <!-- <button class="btn btn-primary" type="submit">Erfassen</button> -->
+<!-- </form> -->
+<form
+  [formGroup]="sensorenDataForm"
+  (ngSubmit)="onSubmit()"
+  *ngIf="showAddTask"
+>
+  <mat-card>
+    <mat-card-title>Neuen Messwert hinzufügen</mat-card-title>
+
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Sensor auswählen</mat-label>
+        <mat-select formControlName="sensorId">
+          <mat-option
+            *ngFor="let item of storeService.sensoren"
+            [value]="item.id"
+            >{{ item?.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Datum auswählen</mat-label>
+        <input formControlName="date" matInput [matDatepicker]="picker" />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Temperatur </mat-label>
+        <input formControlName="temperature" matInput type="number" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Luftfeuchtigkeit </mat-label>
+        <input formControlName="humidity" matInput type="number" />
+      </mat-form-field>
+
+      <button mat-raised-button class="btn" type="submit">Erfassen</button>
+    </mat-card-content>
+  </mat-card>
 </form>

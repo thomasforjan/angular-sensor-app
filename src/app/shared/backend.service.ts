@@ -23,15 +23,25 @@ export class BackendService {
 
   public async getSensorenDaten() {
     const sensorenDataResponse = await firstValueFrom(
-      this.http.get<SensorenDataResponse[]>(`http://localhost:5000/sensorsData`)
+      this.http.get<SensorenDataResponse[]>(
+        `http://localhost:5000/sensorsData?_page=${this.storeService.page}&_l
+    imit=${this.storeService.sensorsPerPage}`,
+        { observe: 'response' }
+      )
     );
-    const sensorenData: SensorenData[] = sensorenDataResponse.map((data) => {
-      const sensor: Sensor = this.sensoren.filter(
-        (sensor) => sensor.id == data.sensorId
-      )[0];
-      return { ...data, sensor };
-    });
-    this.storeService.sensorenDaten = sensorenData;
+    var count = Number(sensorenDataResponse.headers.get('X-Total-Count'));
+
+    if (sensorenDataResponse.body != null) {
+      const sensorenData: SensorenData[] = sensorenDataResponse.body.map(
+        (data: any) => {
+          const sensor: Sensor = this.sensoren.filter(
+            (sensor) => sensor.id == data.sensorId
+          )[0];
+          return { ...data, sensor };
+        }
+      );
+      this.storeService.sensorenDaten = sensorenData;
+    }
   }
 
   public async addSensorsData(sensorenData: SensorenData[]) {

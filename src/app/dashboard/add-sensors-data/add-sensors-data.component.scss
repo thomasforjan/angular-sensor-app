@@ -7,8 +7,12 @@ form {
   margin-bottom: 5%;
 }
 
-form input {
-  width: 20%;
+mat-form-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;

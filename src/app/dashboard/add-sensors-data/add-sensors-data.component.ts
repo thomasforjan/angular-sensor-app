@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BackendService } from 'src/app/shared/backend.service';
 import { StoreService } from 'src/app/shared/store.service';
@@ -10,6 +10,8 @@ import { StoreService } from 'src/app/shared/store.service';
   styleUrls: ['./add-sensors-data.component.scss'],
 })
 export class AddSensorsDataComponent implements OnInit {
+  sensorsForm!: FormGroup;
+
   constructor(
     public storeService: StoreService,
     private formBuilder: UntypedFormBuilder,
@@ -45,4 +47,9 @@ export class AddSensorsDataComponent implements OnInit {
   toggleAddTask() {
     this.showAddTask = !this.showAddTask;
   }
+
+  /* Get errors */
+  public handleError = (controlName: string, errorName: string) => {
+    return this.sensorsForm.controls[controlName].hasError(errorName);
+  };
 }
