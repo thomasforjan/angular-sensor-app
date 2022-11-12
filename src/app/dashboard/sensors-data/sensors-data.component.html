@@ -28,7 +28,7 @@
 </table> -->
 
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="storeService.sensorenDaten">
     <!-- Position Column -->
     <ng-container matColumnDef="Sensor">
       <th mat-header-cell *matHeaderCellDef>Sensor</th>
@@ -87,5 +87,12 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[2, 5, 10, 25, 100]"></mat-paginator>
+  <mat-paginator
+    #paginator
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    [pageIndex]="0"
+    [pageSize]="10"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  ></mat-paginator>
 </div>

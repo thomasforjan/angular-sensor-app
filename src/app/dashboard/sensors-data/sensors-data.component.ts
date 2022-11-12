@@ -1,18 +1,12 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { DeleteDialogComponent } from 'src/app/dialogs/delete-dialog.component';
 import { SensorenData } from 'src/app/models/sensor-data.model';
-import { SensorPosition } from 'src/app/models/sensor.model';
+import { Sensor, SensorPosition } from 'src/app/models/sensor.model';
 import { BackendService } from 'src/app/shared/backend.service';
 import { StoreService } from 'src/app/shared/store.service';
 
@@ -32,9 +26,7 @@ export class SensorsDataComponent implements OnInit {
     'Aktion',
   ];
 
-  dataSource = new MatTableDataSource<SensorenData>();
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  dataSource = new MatTableDataSource(this.storeService.sensorenDaten);
 
   public get SensorPosition() {
     return SensorPosition;
@@ -46,10 +38,12 @@ export class SensorsDataComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
+  @ViewChild('paginator')
+  paginator!: MatPaginator;
+
   async ngOnInit() {
     await this.backendService.getSensoren();
     await this.backendService.getSensorenDaten();
-    this.dataSource.data = this.storeService.sensorenDaten;
   }
 
   ngAfterViewInit() {
@@ -61,16 +55,18 @@ export class SensorsDataComponent implements OnInit {
    * @param id takes id of sensor
    */
   openDeleteModal(id: number) {
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      width: '250px',
-      data: { id },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.storeService.sensorenDaten =
-          this.storeService.sensorenDaten.filter((sensor) => sensor.id !== id);
-      }
-    });
+    const dialogRef = this.dialog
+      .open(DeleteDialogComponent, {
+        width: '250px',
+        data: { id },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.backendService.getSensorenDaten();
+          this.backendService.getSensoren();
+          this.storeService.sensorenDaten;
+        }
+      });
   }
 }

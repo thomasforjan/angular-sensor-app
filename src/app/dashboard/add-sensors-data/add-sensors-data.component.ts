@@ -32,6 +32,8 @@ export class AddSensorsDataComponent implements OnInit {
     if (this.sensorenDataForm?.valid) {
       await this.backendService.addSensorsData(this.sensorenDataForm.value);
       this.sensorenDataForm.reset();
+      this.backendService.getSensorenDaten();
+      this.backendService.getSensoren();
       this._snackBar.open('Neuer Messerwert hinzugefügt', 'Ok', {
         horizontalPosition: 'end',
         verticalPosition: 'bottom',
