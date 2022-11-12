@@ -55,20 +55,6 @@
       "humidity": 84,
       "date": "2022-08-04",
       "id": 24
-    },
-    {
-      "sensorId": 3,
-      "temperature": 11111,
-      "humidity": 11111,
-      "date": "2022-11-12",
-      "id": 25
-    },
-    {
-      "sensorId": 1,
-      "temperature": -5,
-      "humidity": 12,
-      "date": "2022-11-13",
-      "id": 26
     }
   ],
   "sensors": [
