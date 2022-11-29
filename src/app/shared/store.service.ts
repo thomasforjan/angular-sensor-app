@@ -9,8 +9,5 @@ export class StoreService {
   public sensorenDaten: SensorenData[] = [];
   public sensoren: Sensor[] = [];
 
-  sensorsPerPage: number = 10;
-  page: number = 1;
-
   constructor() {}
 }
