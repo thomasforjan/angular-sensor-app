@@ -1,98 +1,59 @@
-<!-- <table>
-  <tr>
-    <th>Sensor</th>
-    <th>Datum</th>
-    <th>Temperatur</th>
-    <th>Luftfeuchtigkeit</th>
-    <th>Standort</th>
-    <th>Position</th>
-  </tr>
-  <tr *ngFor="let item of storeService.sensorenDaten">
-    <td>{{ item.sensor.name }}</td>
-    <td>{{ item.date | date: "longDate" }}</td>
-    <td>{{ item.temperature }}</td>
-    <td>{{ item.humidity }}</td>
-    <td>{{ item.sensor.location }}</td>
-    <td>{{ SensorPosition[item.sensor.position] }}</td>
-    <button
-      (click)="openDeleteModal(item.id)"
-      mat-raised-button
-      matTooltip="Info about the action"
-      color="warn"
-      class="btn"
-      type="submit"
-    >
-      <mat-icon>delete</mat-icon>
-    </button>
-  </tr>
-</table> -->
+<table mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="Sensor">
+    <th mat-header-cell *matHeaderCellDef>Sensor</th>
+    <td mat-cell *matCellDef="let element">{{ element.sensor.name }}</td>
+  </ng-container>
 
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="storeService.sensorenDaten">
-    <!-- Position Column -->
-    <ng-container matColumnDef="Sensor">
-      <th mat-header-cell *matHeaderCellDef>Sensor</th>
-      <td mat-cell *matCellDef="let element">{{ element.sensor.name }}</td>
-    </ng-container>
+  <ng-container matColumnDef="Datum">
+    <th mat-header-cell *matHeaderCellDef>Datum</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.date | date: "longDate" }}
+    </td>
+  </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="Datum">
-      <th mat-header-cell *matHeaderCellDef>Datum</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.date | date: "longDate" }}
-      </td>
-    </ng-container>
+  <ng-container matColumnDef="Temperatur">
+    <th mat-header-cell *matHeaderCellDef>Temperatur</th>
+    <td mat-cell *matCellDef="let element">{{ element.temperature }}</td>
+  </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="Temperatur">
-      <th mat-header-cell *matHeaderCellDef>Temperatur</th>
-      <td mat-cell *matCellDef="let element">{{ element.temperature }}</td>
-    </ng-container>
+  <ng-container matColumnDef="Luftfeuchtigkeit">
+    <th mat-header-cell *matHeaderCellDef>Luftfeuchtigkeit</th>
+    <td mat-cell *matCellDef="let element">{{ element.humidity }}</td>
+  </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="Luftfeuchtigkeit">
-      <th mat-header-cell *matHeaderCellDef>Luftfeuchtigkeit</th>
-      <td mat-cell *matCellDef="let element">{{ element.humidity }}</td>
-    </ng-container>
+  <ng-container matColumnDef="Standort">
+    <th mat-header-cell *matHeaderCellDef>Standort</th>
+    <td mat-cell *matCellDef="let element">{{ element.sensor.location }}</td>
+  </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="Standort">
-      <th mat-header-cell *matHeaderCellDef>Standort</th>
-      <td mat-cell *matCellDef="let element">{{ element.sensor.location }}</td>
-    </ng-container>
+  <ng-container matColumnDef="Position">
+    <th mat-header-cell *matHeaderCellDef>Position</th>
+    <td mat-cell *matCellDef="let element">
+      {{ SensorPosition[element.sensor.position] }}
+    </td>
+  </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="Position">
-      <th mat-header-cell *matHeaderCellDef>Position</th>
-      <td mat-cell *matCellDef="let element">
-        {{ SensorPosition[element.sensor.position] }}
-      </td>
-    </ng-container>
+  <ng-container matColumnDef="Aktion">
+    <th mat-header-cell *matHeaderCellDef>Action</th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <div>
+        <a
+          mat-raised-button
+          (click)="openDeleteModal(element.id, i)"
+          color="warn"
+          >Delete</a
+        >
+      </div>
+    </td>
+  </ng-container>
 
-    <ng-container matColumnDef="Aktion">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
-      <td mat-cell *matCellDef="let element">
-        <div>
-          <a
-            mat-raised-button
-            (click)="openDeleteModal(element.id)"
-            color="warn"
-            >Delete</a
-          >
-        </div>
-      </td>
-    </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-
-  <mat-paginator
-    #paginator
-    [pageSizeOptions]="[5, 10, 25, 100]"
-    [pageIndex]="0"
-    [pageSize]="10"
-    showFirstLastButtons
-    aria-label="Select page of periodic elements"
-  ></mat-paginator>
-</div>
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 25, 100]"
+  [pageIndex]="0"
+  [pageSize]="10"
+  showFirstLastButtons
+></mat-paginator>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -15,7 +15,9 @@ import { StoreService } from 'src/app/shared/store.service';
   templateUrl: './sensors-data.component.html',
   styleUrls: ['./sensors-data.component.scss'],
 })
-export class SensorsDataComponent implements OnInit {
+export class SensorsDataComponent implements OnInit, AfterViewInit {
+  sensorenData!: Object;
+
   displayedColumns: string[] = [
     'Sensor',
     'Datum',
@@ -26,7 +28,7 @@ export class SensorsDataComponent implements OnInit {
     'Aktion',
   ];
 
-  dataSource = new MatTableDataSource(this.storeService.sensorenDaten);
+  dataSource = new MatTableDataSource<SensorenData>();
 
   public get SensorPosition() {
     return SensorPosition;
@@ -38,15 +40,21 @@ export class SensorsDataComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  @ViewChild('paginator')
+  @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
   async ngOnInit() {
     await this.backendService.getSensoren();
     await this.backendService.getSensorenDaten();
+    this.initializeDataSource();
   }
 
   ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  initializeDataSource() {
+    this.dataSource.data = this.storeService.sensorenDaten;
     this.dataSource.paginator = this.paginator;
   }
 
@@ -54,7 +62,7 @@ export class SensorsDataComponent implements OnInit {
    * Opens delete-dialog component (Modal-Window)
    * @param id takes id of sensor
    */
-  openDeleteModal(id: number) {
+  openDeleteModal(id: number, index: any) {
     const dialogRef = this.dialog
       .open(DeleteDialogComponent, {
         width: '250px',
@@ -63,9 +71,9 @@ export class SensorsDataComponent implements OnInit {
       .afterClosed()
       .subscribe((result) => {
         if (result) {
-          this.backendService.getSensorenDaten();
+          this.dataSource.data.filter((i) => i != index);
           this.backendService.getSensoren();
-          this.storeService.sensorenDaten;
+          this.backendService.getSensorenDaten();
         }
       });
   }
