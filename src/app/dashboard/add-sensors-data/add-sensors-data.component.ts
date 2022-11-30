@@ -11,6 +11,10 @@ import { StoreService } from 'src/app/shared/store.service';
 })
 export class AddSensorsDataComponent implements OnInit {
   sensorsForm!: FormGroup;
+  readonly temperatureMin = -100;
+  readonly temperatureMax = 60;
+  readonly humidityMin = 0;
+  readonly humidityMax = 100;
 
   constructor(
     public storeService: StoreService,
@@ -24,8 +28,22 @@ export class AddSensorsDataComponent implements OnInit {
   ngOnInit(): void {
     this.sensorenDataForm = this.formBuilder.group({
       sensorId: [0, [Validators.required]],
-      temperature: ['', [Validators.required]],
-      humidity: ['', [Validators.required]],
+      temperature: [
+        '',
+        [
+          Validators.required,
+          Validators.min(this.temperatureMin),
+          Validators.max(this.temperatureMax),
+        ],
+      ],
+      humidity: [
+        '',
+        [
+          Validators.required,
+          Validators.min(this.humidityMin),
+          Validators.max(this.humidityMax),
+        ],
+      ],
       date: [null, [Validators.required]],
     });
   }
