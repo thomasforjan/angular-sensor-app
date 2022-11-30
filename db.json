@@ -55,208 +55,189 @@
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
-    }
-    ,
+    },
     {
       "sensorId": 2,
       "temperature": 6,
       "humidity": 6,
       "date": "2022-10-31T23:00:00.000Z",
       "id": 23
+    },
+    {
+      "sensorId": 1,
+      "temperature": 22,
+      "humidity": 30,
+      "date": "2022-10-31T23:00:00.000Z",
+      "id": 24
     }
-
   ],
   "sensors": [
     {
