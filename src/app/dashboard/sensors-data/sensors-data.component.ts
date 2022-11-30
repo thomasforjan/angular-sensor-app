@@ -15,9 +15,7 @@ import { StoreService } from 'src/app/shared/store.service';
   templateUrl: './sensors-data.component.html',
   styleUrls: ['./sensors-data.component.scss'],
 })
-export class SensorsDataComponent implements OnInit, AfterViewInit {
-  sensorenData!: Object;
-
+export class SensorsDataComponent implements OnInit {
   displayedColumns: string[] = [
     'Sensor',
     'Datum',
@@ -30,6 +28,13 @@ export class SensorsDataComponent implements OnInit, AfterViewInit {
 
   dataSource = new MatTableDataSource<SensorenData>();
 
+  @ViewChild(MatPaginator, { static: false }) set matPaginator(
+    paginator: MatPaginator
+  ) {
+    this.dataSource.paginator = paginator;
+    this.initializeDataSource();
+  }
+
   public get SensorPosition() {
     return SensorPosition;
   }
@@ -40,22 +45,14 @@ export class SensorsDataComponent implements OnInit, AfterViewInit {
     private dialog: MatDialog
   ) {}
 
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
-
   async ngOnInit() {
     await this.backendService.getSensoren();
     await this.backendService.getSensorenDaten();
     this.initializeDataSource();
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
-
   initializeDataSource() {
     this.dataSource.data = this.storeService.sensorenDaten;
-    this.dataSource.paginator = this.paginator;
   }
 
   /**
