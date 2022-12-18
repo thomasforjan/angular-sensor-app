@@ -10,6 +10,7 @@ export class StoreService {
 
   private _sensorenDaten: SensorenData[] = [];
   public sensoren: Sensor[] = [];
+  public isLoading = true;
 
   constructor() {}
 

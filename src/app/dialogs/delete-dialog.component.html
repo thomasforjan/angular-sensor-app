@@ -3,10 +3,28 @@
   <h1></h1>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-raised-button (click)="confirmDeleteModal()" color="warn">
-    Löschen
+  <button
+    mat-raised-button
+    (click)="confirmDeleteModal()"
+    color="warn"
+    matTooltip="OK"
+  >
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Example home icon"
+      fontIcon="done"
+    ></mat-icon>
   </button>
-  <button mat-raised-button mat-dialog-close (click)="cancelDeleteModal()">
-    Abbrechen
+  <button
+    mat-raised-button
+    mat-dialog-close
+    (click)="cancelDeleteModal()"
+    matTooltip="Cancel"
+  >
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Example home icon"
+      fontIcon="close"
+    ></mat-icon>
   </button>
 </mat-dialog-actions>

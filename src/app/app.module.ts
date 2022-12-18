@@ -14,6 +14,7 @@ import { ButtonComponent } from './button/button.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteDialogComponent } from './dialogs/delete-dialog.component';
 import { SensorsDataTableComponent } from './dashboard/sensors-data-table/sensors-data-table.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SensorsDataTableComponent } from './dashboard/sensors-data-table/sensor
     AboutPageComponent,
     DeleteDialogComponent,
     SensorsDataTableComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,9 @@ import { SensorPosition } from 'src/app/models/sensor.model';
   styleUrls: ['./sensors-data-table.component.scss'],
 })
 export class SensorsDataTableComponent implements AfterViewInit, OnDestroy {
+  isDeleting = false;
+  toDeleteItemId: number = 0;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -38,19 +41,21 @@ export class SensorsDataTableComponent implements AfterViewInit, OnDestroy {
   pageSizes = [5, 10, 25, 100];
 
   constructor(
-    private storeservice: StoreService,
+    private storeService: StoreService,
     private backendService: BackendService,
     private dialog: MatDialog
   ) {}
 
   ngAfterViewInit(): void {
-    this.storeServiceSubscription = this.storeservice.dataHasUpdated.subscribe(
+    this.storeService.isLoading = true;
+    this.storeServiceSubscription = this.storeService.dataHasUpdated.subscribe(
       () => {
         this.dataSource = new MatTableDataSource(
-          this.storeservice.sensorenDaten
+          this.storeService.sensorenDaten
         );
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.storeService.isLoading = false;
       }
     );
   }
@@ -72,9 +77,14 @@ export class SensorsDataTableComponent implements AfterViewInit, OnDestroy {
       .afterClosed()
       .subscribe((result) => {
         if (result) {
+          this.toDeleteItemId = id;
+          this.isDeleting = true;
+          this.storeService.isLoading = true;
           this.dataSource.data.filter((i) => i != index);
           this.backendService.getSensoren();
           this.backendService.getSensorenDaten();
+          this.isDeleting = false;
+          this.storeService.isLoading = false;
         }
       });
   }

@@ -11,6 +11,7 @@ import { StoreService } from 'src/app/shared/store.service';
 })
 export class AddSensorsDataComponent implements OnInit {
   sensorsForm!: FormGroup;
+  public isAdding: boolean = false;
   readonly temperatureMin = -100;
   readonly temperatureMax = 60;
   readonly humidityMin = 0;
@@ -50,6 +51,7 @@ export class AddSensorsDataComponent implements OnInit {
 
   async onSubmit() {
     if (this.sensorenDataForm?.valid) {
+      this.isAdding = true;
       await this.backendService.addSensorsData(this.sensorenDataForm.value);
       this.sensorenDataForm.reset();
       this.backendService.getSensorenDaten();
@@ -59,6 +61,7 @@ export class AddSensorsDataComponent implements OnInit {
         verticalPosition: 'bottom',
         duration: 2000,
       });
+      this.isAdding = false;
     }
   }
 
